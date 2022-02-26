@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import React from "react";
 import {Icon} from "react-native-elements"
+import { useNavigation } from '@react-navigation/native';
+import { navigate } from './../node_modules/@react-navigation/routers/src/CommonActions';
 
 const data = [
   {
@@ -25,13 +27,14 @@ const data = [
 ];
 
 const NavOptions = () => {
+    const navigation = useNavigation();
   return (
     <FlatList
       data={data}
       horizontal
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <TouchableOpacity style={styles.navOptionsStyle} >
+        <TouchableOpacity style={styles.navOptionsStyle} onPress={()=> navigation.navigate(item.screen)} >
           <View >
            <Image
            style={{ width: 120, height: 120, resizeMode: 'contain' }}
